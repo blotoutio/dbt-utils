@@ -15,9 +15,9 @@
                 else lower(table_type)
             end as "table_type"
         from {{ database }}.information_schema.tables
-        where table_schema ilike '{{ schema_pattern }}'
-        and table_name ilike '{{ table_pattern }}'
-        and table_name not ilike '{{ exclude }}'
+        where lower(table_schema) like lower('{{ schema_pattern }}')
+        and lower(table_name) like lower('{{ table_pattern }}')
+        and lower(table_name) not like lower('{{ exclude }}')
 
 {% endmacro %}
 
